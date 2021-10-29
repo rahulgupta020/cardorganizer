@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Button, Table } from "reactstrap";
 import { Modal } from "react-bootstrap";
 import './Style.css';
+import Filesave from "./Filesave";
 
 class Main extends Component{
 constructor(props)
@@ -244,8 +245,8 @@ onSubmitUpdate = (e) =>{
                 <Button onClick={this.addcard} color="primary">Add a Card</Button>
                 <br /><br />
 
-
-                <div style={{borderStyle: "double", width: "350px"}}>
+                {[...Array(this.state.addcount)].map((_, i) => <Filesave submitFile={this.submitFile} onChangeInfo={this.onChangeInfo} onChangeFile={this.onChangeFile} key={i} />)}
+                {/* <div style={{borderStyle: "double", width: "350px"}}>
                     <h4>File save card</h4>
                     <form onSubmit={this.submitFile}>
                         <label htmlFor="info">Info: .</label> 
@@ -256,7 +257,7 @@ onSubmitUpdate = (e) =>{
                         <Button onClick={this.cardCancel} color="danger">Cancel</Button>{' '}
                         <br /><br />
                     </form>
-                </div> 
+                </div>  */}
 
 
                 
