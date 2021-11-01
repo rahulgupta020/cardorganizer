@@ -40,7 +40,7 @@ constructor(props)
 addcard = () =>{
     this.setState(prev => ({addcount: prev.addcount+1}))
     this.setState({filesavestate: true});
-    console.log("add card")
+    //console.log("add card")
 }
 
 onChangeInfo(event){
@@ -51,7 +51,9 @@ onChangeFile = (event) =>{
     this.setState({fileValue: event.target.files[0].name});
     this.setState({extenValue: event.target.files[0].name.split('.').pop()})
     this.setState({sizeValue: Math.ceil((event.target.files[0].size)/1024)});
-    if(event.target.files[0].name.split('.').pop() === "pdf")
+    if(event.target.files[0].name.split('.').pop() === "pdf" ||
+        event.target.files[0].name.split('.').pop() === "PDF"
+    )
     {
         this.setState({typeValue: "pdf"})
     }
@@ -59,33 +61,70 @@ onChangeFile = (event) =>{
     {
         this.setState({typeValue: "Doc"})
     }
-    else if(event.target.files[0].name.split('.').pop() === "png" || event.target.files[0].name.split('.').pop() === "jpg")
+    else if(event.target.files[0].name.split('.').pop() === "png" ||
+            event.target.files[0].name.split('.').pop() === "PNG" || 
+            event.target.files[0].name.split('.').pop() === "jpg" ||
+            event.target.files[0].name.split('.').pop() === "JPEG" ||
+            event.target.files[0].name.split('.').pop() === "gif" ||
+            event.target.files[0].name.split('.').pop() === "svg" ||
+            event.target.files[0].name.split('.').pop() === "SVG"
+            )
     {
         this.setState({typeValue: "Image"})
+    }
+        else if(event.target.files[0].name.split('.').pop() === "xlsx" ||
+            event.target.files[0].name.split('.').pop() === "xlsm" || 
+            event.target.files[0].name.split('.').pop() === "xlsb" ||
+            event.target.files[0].name.split('.').pop() === "xltx" ||
+            event.target.files[0].name.split('.').pop() === "xltm" ||
+            event.target.files[0].name.split('.').pop() === "xls" ||
+            event.target.files[0].name.split('.').pop() === "xlt" ||
+            event.target.files[0].name.split('.').pop() === "csv"
+            )
+    {
+        this.setState({typeValue: "Excel"})
+    }
+    else{
+        this.setState({typeValue: "Others"})
     }
 }
 
 onChangeInfo1 = (e) =>{
-    console.log("onChangeInfo1")
+    //console.log("onChangeInfo1")
     this.setState({newInfoValue: e.target.value})
 }
 
 submitFile = (event) =>{
     event.preventDefault();
     let items = [...this.state.items];
-    items.push({infoValue: this.state.infoValue, fileValue: this.state.fileValue, extenValue: this.state.extenValue, typeValue: this.state.typeValue, sizeValue: this.state.sizeValue})
-    this.setState({
-        items,
-        infoValue: '',
-        fileValue: '',
-        extenValue: '',
-        typeValue: '',
-        sizeValue: ''
-    });
+    if(Object.keys(this.state.infoValue).length == 0)
+    {
+        alert("Value is blank....")
+    }
+    else
+    {
+        //console.log("hai")
+        items.push({infoValue: this.state.infoValue, fileValue: this.state.fileValue, extenValue: this.state.extenValue, typeValue: this.state.typeValue, sizeValue: this.state.sizeValue})
+        this.setState({
+            items,
+            infoValue: '',
+            fileValue: '',
+            extenValue: '',
+            typeValue: '',
+            sizeValue: ''
+        });
+        this.setState({filesavestate: false})
+        this.setState({addcount: 0})   
+        alert("Data Inserted into table..")
+    }
+
+
 }
 
-cardCancel = () =>{
-    console.log("canvel card")
+
+cardCancel = (e) =>{
+    this.setState({filesavestate: false})
+    this.setState({addcount: 0})
 }
 
 
@@ -176,17 +215,17 @@ getSelectedRows() {
     if(this.state.SelectedList && this.state.SelectedList.length)
     {
         e.preventDefault();
-        console.log("delete")
+        //console.log("delete")
         const arr1 = this.state.items;
         const arr2 = this.state.SelectedList;
-        console.log("Filter")
+        //console.log("Filter")
         // const arr3 = arr1.filter(value => arr2.includes(value)).filter((value, index, self) => self.indexOf(value) === index);
         // console.log(arr3)
         let unique1 = arr1.filter((o) => arr2.indexOf(o) === -1);
         let unique2 = arr2.filter((o) => arr1.indexOf(o) === -1);
 
         const unique = unique1.concat(unique2);
-        console.log(unique)
+        //console.log(unique)
         this.setState({items: unique})
         alert("Row is Deleted")
     }
@@ -204,7 +243,7 @@ editbtn = (e) =>{
     {
         this.setState({ showModal: true})
         e.preventDefault();
-        console.log("edit")
+        //console.log("edit")
         this.state.SelectedList.map((selectitem) =>(
             this.setState({oldInfoValue: selectitem.infoValue})
         ))
@@ -224,14 +263,16 @@ editbtn = (e) =>{
 
 onSubmitUpdate = (e) =>{
     e.preventDefault();
-    console.log("edit submit")
+    //console.log("edit submit")
     let search_to_change = this.state.oldInfoValue
-    console.log(search_to_change)
+    //console.log(search_to_change)
     this.state.items.forEach((item, index) => {
         if(item.infoValue == this.state.oldInfoValue){
             this.state.items[index].infoValue = this.state.newInfoValue
         }
     })
+    this.setState({ showModal: false})
+    alert("Update Successfully...")
 
     // console.log(this.state.oldInfoValue)
     // console.log(this.state.newInfoValue)
@@ -239,29 +280,25 @@ onSubmitUpdate = (e) =>{
 
 
     render(){
+
         return(
             <>
-                <h1>Cardtable here</h1>
+                <h1>Assignment-2</h1>
                 <Button onClick={this.addcard} color="primary">Add a Card</Button>
                 <br /><br />
 
-                {[...Array(this.state.addcount)].map((_, i) => <Filesave submitFile={this.submitFile} onChangeInfo={this.onChangeInfo} onChangeFile={this.onChangeFile} key={i} />)}
-                {/* <div style={{borderStyle: "double", width: "350px"}}>
-                    <h4>File save card</h4>
-                    <form onSubmit={this.submitFile}>
-                        <label htmlFor="info">Info: .</label> 
-                        <input type="text" name="info" onChange={this.onChangeInfo} /><br /><br />
-                        <label htmlFor="myfile">File: .</label>
-                        <input type="file" id="myfile" name="myfile" onChange={this.onChangeFile} /><br /><br />
-                        <Button type="submit" color="success">Save</Button>{' '}
-                        <Button onClick={this.cardCancel} color="danger">Cancel</Button>{' '}
-                        <br /><br />
-                    </form>
-                </div>  */}
-
+                {(this.state.filesavestate) ? 
+                    [...Array(this.state.addcount)].map((_, i) => 
+                    <Filesave submitFile={this.submitFile} 
+                    onChangeInfo={this.onChangeInfo} 
+                    onChangeFile={this.onChangeFile}
+                    cardCancel={this.cardCancel} key={i} />
+                )
+                : 
+                null}
 
                 
-            <h1>Table There</h1>
+            <h1>Table</h1>
             <form>
                 <Table bordered striped style={{width: "50%"}}>
                     <thead>
@@ -339,7 +376,7 @@ onSubmitUpdate = (e) =>{
 
             <Modal show={this.state.showModal} onHide={this.handleClose}>
                 <Modal.Header closeButton>
-                    <Modal.Title>Modal heading</Modal.Title>
+                    <Modal.Title>Update Your Card...</Modal.Title>
                 </Modal.Header>
 
                 <Modal.Body>
@@ -353,8 +390,8 @@ onSubmitUpdate = (e) =>{
                         {this.state.SelectedList.map(edititem =>{
                             return(
                             <>
-                                <label htmlFor="info">Old Info: .</label> 
-                                <input type="text" name="info" value={edititem.infoValue} onChange={this.onChangeInfo} /><br /><br />
+                                {/* <label htmlFor="info">Old Info: .</label> 
+                                <input type="text" name="info" value={edititem.infoValue} onChange={this.onChangeInfo} /><br /><br /> */}
                                 {/* projects.find( p => p.value === 'jquery-ui' && ( p.desc = 'your value', true ) ); */}
                                 {/* this.props.items.find( p => p.infoValue === {edititem.infoValue} && ( p.infoValue = "kajal", true)); */}
 
@@ -362,14 +399,14 @@ onSubmitUpdate = (e) =>{
                             </>
                             )
                         })}
-
+                            <p>old value :- {this.state.oldInfoValue}</p>
                             <label htmlFor="info">New Info: .</label> 
                             <input type="text" name="info" onChange={this.onChangeInfo1} /><br /><br />
-                            <p>old value :- {this.state.oldInfoValue}</p>
-                            <p>new value :- {this.state.newInfoValue}</p>
+                            
+                            {/* <p>new value :- {this.state.newInfoValue}</p> */}
                             {/* <label htmlFor="myfile">File: .</label>
                             <input type="file" id="myfile" name="myfile" onChange={this.onChangeFile} /><br /><br /> */}
-                            <Button color="success">Update</Button>{' '}
+                            <Button color="warning">Update</Button>{' '}
                             {/* <Button color="danger">Cancel</Button>{' '} */}
                             <br /><br />
                         </form>
@@ -378,9 +415,9 @@ onSubmitUpdate = (e) =>{
                 </Modal.Body>
 
                 <Modal.Footer>
-                    <Button variant="secondary" onClick={this.handleClose}>
+                    {/* <Button variant="secondary" onClick={this.handleClose}>
                         Close
-                    </Button>
+                    </Button> */}
                 </Modal.Footer>
 
             </Modal>
