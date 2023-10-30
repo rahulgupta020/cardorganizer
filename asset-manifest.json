@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/cardorganizer/static/css/main.4767dcc4.chunk.css",
+    "main.js": "/cardorganizer/static/js/main.cb1716ca.chunk.js",
+    "main.js.map": "/cardorganizer/static/js/main.cb1716ca.chunk.js.map",
+    "runtime-main.js": "/cardorganizer/static/js/runtime-main.aabc814a.js",
+    "runtime-main.js.map": "/cardorganizer/static/js/runtime-main.aabc814a.js.map",
+    "static/css/2.c1256375.chunk.css": "/cardorganizer/static/css/2.c1256375.chunk.css",
+    "static/js/2.ca00eb7b.chunk.js": "/cardorganizer/static/js/2.ca00eb7b.chunk.js",
+    "static/js/2.ca00eb7b.chunk.js.map": "/cardorganizer/static/js/2.ca00eb7b.chunk.js.map",
+    "static/js/3.1c61ee36.chunk.js": "/cardorganizer/static/js/3.1c61ee36.chunk.js",
+    "static/js/3.1c61ee36.chunk.js.map": "/cardorganizer/static/js/3.1c61ee36.chunk.js.map",
+    "index.html": "/cardorganizer/index.html",
+    "static/css/2.c1256375.chunk.css.map": "/cardorganizer/static/css/2.c1256375.chunk.css.map",
+    "static/css/main.4767dcc4.chunk.css.map": "/cardorganizer/static/css/main.4767dcc4.chunk.css.map",
+    "static/js/2.ca00eb7b.chunk.js.LICENSE.txt": "/cardorganizer/static/js/2.ca00eb7b.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.aabc814a.js",
+    "static/css/2.c1256375.chunk.css",
+    "static/js/2.ca00eb7b.chunk.js",
+    "static/css/main.4767dcc4.chunk.css",
+    "static/js/main.cb1716ca.chunk.js"
+  ]
+}
