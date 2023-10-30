@@ -1,41 +1,137 @@
 div label input {
-   margin-right:100px;
+    margin-right: 100px;
 }
+
 body {
-    font-family:sans-serif;
+    font-family: sans-serif;
 }
 
 #ck-button {
-    margin:4px;
-    background-color:#0275d8;
+    margin: 4px;
+    background-color: #0275d8;
     color: white;
-    border-radius:4px;
-    border:1px solid #D0D0D0;
-    overflow:auto;
-    float:left;
+    border-radius: 4px;
+    border: 1px solid #D0D0D0;
+    overflow: auto;
+    float: left;
 }
 
-/* #ck-button:hover {
-    background:red;
-} */
-
 #ck-button label {
-    float:left;
-    width:8.0em;
+    float: left;
+    width: 8.0em;
 }
 
 #ck-button label span {
-    text-align:center;
-    padding:3px 0px;
-    display:block;
+    text-align: center;
+    padding: 3px 0px;
+    display: block;
 }
 
 #ck-button label input {
-    position:absolute;
-    top:-20px;
+    position: absolute;
+    top: -20px;
 }
 
-/* #ck-button input:checked + span {
-    background-color:#911;
-    color:#fff;
-} */
+/* Main.css */
+
+.Main {
+    text-align: center;
+}
+
+.heading {
+    background-color: #007BFF;
+    padding: 20px;
+}
+
+.heading-text {
+    color: #fff;
+}
+
+.button-container2 {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.button-container2 Button {
+    background-color: #c8381f;
+    color: #FFFFFF;
+    margin-right: 10px;
+    border: none;
+    cursor: pointer;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.button-container2 Button:hover {
+    background-color: #0056b3;
+}
+
+.add-card-button {
+    background-color: #55b817;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+}
+
+.table-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    margin: 0 100px;
+}
+
+.custom-table {
+    width: 50%;
+    text-align: center;
+}
+
+.btn4 {
+    margin: 0 100px;
+}
+
+.button-container1 {
+    display: flex;
+    justify-content: flex-start;
+    margin: 10px 0;
+}
+
+.button-container1 Button {
+    background-color: #007BFF;
+    color: #FFFFFF;
+    margin-right: 10px;
+    border: none;
+    cursor: pointer;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.button-container1 Button:hover {
+    background-color: #0056b3;
+}
+
+.card-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f0f0f0;
+    padding: 20px 0;
+}
+
+.card {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 350px;
+}
+
+.card button {
+    margin-right: 10px;
+}
